@@ -1,8 +1,8 @@
 <launch>
   <!-- Arguments -->
   <arg name="scan_topic"     default="scan"/>
-  <arg name="initial_pose_x" default="0.0"/>
-  <arg name="initial_pose_y" default="0.0"/>
+  <arg name="initial_pose_x" default="-6.5"/>
+  <arg name="initial_pose_y" default="-1.0"/>
   <arg name="initial_pose_a" default="0.0"/>
 
   <!-- AMCL -->
@@ -41,7 +41,8 @@
     <param name="odom_alpha4"               value="0.1"/>
     <param name="odom_frame_id"             value="/jb_0/odom"/>
     <param name="base_frame_id"             value="/jb_0/base_footprint"/>
-    <param name="global_frame_id"           value="/map"/>
+
+    <param name="global_frame_id"           value="jb_0/map"/>
 
   </node>
 </launch>

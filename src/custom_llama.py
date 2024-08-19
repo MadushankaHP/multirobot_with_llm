@@ -27,12 +27,7 @@ class LlamaLLM(LLM):
 
     @property
     def _identifying_params(self) -> Mapping[str, Any]:
-        return {"model_path": self.model_path}
-
-
-
-
-    
+        return {"model_path": self.model_path}  
     
 def infer(str_input):
     start_time = time.time()

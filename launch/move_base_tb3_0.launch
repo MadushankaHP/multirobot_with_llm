@@ -8,15 +8,17 @@
   <!-- move_base -->
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
     <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
-    <rosparam file="$(find turtlebot3_navigation)/param/costmap_common_params_$(arg model).yaml" command="load" ns="global_costmap" />
-    <rosparam file="$(find turtlebot3_navigation)/param/costmap_common_params_$(arg model).yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find turtlebot3_navigation)/param/local_costmap_params.yaml" command="load" />
-    <rosparam file="$(find turtlebot3_navigation)/param/global_costmap_params.yaml" command="load" />
-    <rosparam file="$(find turtlebot3_navigation)/param/move_base_params.yaml" command="load" />
-    <rosparam file="$(find turtlebot3_navigation)/param/dwa_local_planner_params_$(arg model).yaml" command="load" />
+    <rosparam file="$(find multirobot_with_llm)/param/robot1/costmap_common_params_$(arg model).yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find multirobot_with_llm)/param/robot1/costmap_common_params_$(arg model).yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find multirobot_with_llm)/param/robot1/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find multirobot_with_llm)/param/robot1/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find multirobot_with_llm)/param/robot1/move_base_params.yaml" command="load" />
+    <rosparam file="$(find multirobot_with_llm)/param/robot1/dwa_local_planner_params_$(arg model).yaml" command="load" />
     <param name="global_costmap/robot_base_frame" value="jb_0/base_footprint"/>
     <param name="local_costmap/robot_base_frame" value="jb_0/base_footprint"/>
     <param name="local_costmap/global_frame" value="jb_0/odom"/>
+
+    <!-- <remap from="map" to="/map"/> -->
     <param name="DWAPlannerROS/min_vel_x" value="0.0" if="$(arg move_forward_only)" />
     <!-- remap from="map" to="/map" / -->
     <!-- remap from="cmd_vel" to="$(arg cmd_vel_topic)"/ -->
