@@ -38,6 +38,20 @@
     <rosparam command="load" file="$(find multibot_slam)/configuration/gmapping_params.yaml" />
   </node>
 
+  <group ns="$(arg first_tb3)/map_merge">
+    <param name="init_pose_x"   value="$(arg first_tb3_x_pos)"/>
+    <param name="init_pose_y"   value="$(arg first_tb3_y_pos)"/>
+    <param name="init_pose_z"   value="$(arg first_tb3_z_pos)"/>
+    <param name="init_pose_yaw" value="$(arg first_tb3_yaw)"  />
+  </group>
+
+  <group ns="$(arg second_tb3)/map_merge">
+    <param name="init_pose_x"   value="$(arg second_tb3_x_pos)"/>
+    <param name="init_pose_y"   value="$(arg second_tb3_y_pos)"/>
+    <param name="init_pose_z"   value="$(arg second_tb3_z_pos)"/>
+    <param name="init_pose_yaw" value="$(arg second_tb3_yaw)"  />
+  </group>
+
  <node pkg="multirobot_map_merge" type="map_merge" respawn="false" name="map_merge" output="screen">
     <param name="robot_map_topic" value="map"/>
     <param name="robot_namespace" value="jb"/>
