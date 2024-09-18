@@ -30,7 +30,9 @@ def callback2(message1: String):
 def callback3(message1):
     global robot1_status
     
-    robot1_status = message1.status_list.status
+    if(len(message1.status_list)>2):
+        robot1_status = message1.status_list.status
+        print(robot1_status)
     
     
     
@@ -86,12 +88,13 @@ def main():
     
     core = True
     while not rospy.is_shutdown():
+        global robot1_status
         if location is not None and direction is not None:
             
             
             
             if(core==True):
-                
+                print("first")
                 position = location.position
                 orientation = location.orientation
                 
@@ -117,28 +120,29 @@ def main():
             
             
             
-            if(robot1_status==3 and core ==False):
-                print(robot1_status)
-                position = location.position
-                orientation = location.orientation
+            # if(robot1_status==3 and core ==False):
+            #     print(robot1_status)
+            #     position = location.position
+            #     orientation = location.orientation
                 
-                center = (position.x, position.y)
-                radius = 2 
-                coord = get_direction_coordinate(center, radius, direction)
+            #     center = (position.x, position.y)
                 
-                current_goal.header.frame_id = 'map'
-                current_goal.pose.position.x = coord[0]
-                current_goal.pose.position.y = coord[1]
-                current_goal.pose.position.z = position.z
+            #     radius = 2 
+            #     coord = get_direction_coordinate(center, radius, direction)
                 
-                current_goal.pose.orientation.x = 0
-                current_goal.pose.orientation.y = 0
-                current_goal.pose.orientation.z = 0
-                current_goal.pose.orientation.w = 1
+            #     current_goal.header.frame_id = 'map'
+            #     current_goal.pose.position.x = coord[0]
+            #     current_goal.pose.position.y = coord[1]
+            #     current_goal.pose.position.z = position.z
+                
+            #     current_goal.pose.orientation.x = 0
+            #     current_goal.pose.orientation.y = 0
+            #     current_goal.pose.orientation.z = 0
+            #     current_goal.pose.orientation.w = 1
 
-                print(current_goal.pose.position)
-                for i in range(10):
-                    pub1.publish(current_goal)
+            #     print(current_goal.pose.position)
+            #     for i in range(10):
+            #         pub1.publish(current_goal)
                 
             
             

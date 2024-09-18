@@ -10,13 +10,13 @@
   <arg name="first_tb3"  default="jb_0"/>
   <arg name="second_tb3" default="jb_1"/>
 
-  <arg name="first_tb3_x_pos" default=" -6.5"/>
-  <arg name="first_tb3_y_pos" default=" -1.0"/>
+  <arg name="first_tb3_x_pos" default=" 0.9"/>
+  <arg name="first_tb3_y_pos" default=" 1.7"/>
   <arg name="first_tb3_z_pos" default=" 0"/>
   <arg name="first_tb3_yaw"   default=" 0"/>
 
-  <arg name="second_tb3_x_pos" default=" 3.5"/>
-  <arg name="second_tb3_y_pos" default=" 4.0"/>
+  <arg name="second_tb3_x_pos" default=" 0.9"/>
+  <arg name="second_tb3_y_pos" default=" 3.3"/>
   <arg name="second_tb3_z_pos" default=" 0.0"/>
   <arg name="second_tb3_yaw"   default=" 0.0"/>
  
@@ -64,6 +64,7 @@
     <param name="estimation_confidence" value="1.0"/>
   </node>
 
+  <!-- <node pkg="tf" type="static_transform_publisher" name="world_to_mergedmap_tf_broadcaster"  args="0.385 0.385 0 0 0 0 world map 20"/> -->
   <node pkg="tf" type="static_transform_publisher" name="world_to_$(arg first_tb3)_tf_broadcaster"  args="0 0 0 0 0 0 map /$(arg first_tb3)/map 100"/>
   <node pkg="tf" type="static_transform_publisher" name="world_to_$(arg second_tb3)_tf_broadcaster" args="0 0 0 0 0 0 map /$(arg second_tb3)/map 100"/>
 
@@ -108,7 +109,8 @@
   </group>
 
 
-   
+  <node pkg="tf" type="static_transform_publisher" name="global_to_robot1_tf_broadcaster"  args="0 0 0 0 0 0 global /robot_1/map 100"/>
+  <node pkg="tf" type="static_transform_publisher" name="global_to_robot2_tf_broadcaster" args="0 0 0 0 0 0 global /robot_2/map 100"/>
 
 
   <!-- <node pkg="tf" type="static_transform_publisher" name="world_to_$(arg first_tb3)_tf_broadcaster"  args="0 0 0 0 0 0 /map /$(arg first_tb3)/map 100"/>
@@ -116,9 +118,9 @@
 
 
   <!-- rviz -->
-  <group if="$(arg open_rviz)"> 
+  <!-- <group if="$(arg open_rviz)"> 
     <node pkg="rviz" type="rviz" name="rviz" required="true"
           args="-d $(find multirobot_with_llm)/rviz/multirobot.rviz"/>
-  </group>
+  </group> -->
 
 </launch>

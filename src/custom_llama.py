@@ -50,27 +50,47 @@ def infer(str_input):
     #  \n\n### Response:\n'''
     # )
 
-    prompt = PromptTemplate(
-    input_variables=["query"],
-    template='''\n\n### Instruction:\nGiven the instruction "{instruction}",  extract the following information in JSON format using input query. So json format is like this one. "coordinates": [<robot location>], "possible_directions": [<robot can move directions based on Lidar data. Array has 8 directions: 0 = not possible, 1 = possible>].
-    The 8 directions in the array are as follows:
-    - 0: east
-    - 1: northeast
-    - 2: north
-    - 3: northwest
-    - 4: west
-    - 5: southwest
-    - 6: south
-    - 7: southeast
-    So example input query and model output are below. Please refer to these examples and provide only model output in the following format. So direction start 
-    input: "robot loc : (3,4) and  Lidar data : (1,0,0,0,0,1,1,0)", Output: {{"coordinates": ["3,4"], "Posible_Directions": ["east,Southwest,South"]}}.
-    input: "robot loc : (10,5) and  Lidar data : (1,0,1,0,0,0,1,1)", Output: {{"coordinates": ["10,5"], "Posible_Directions": ["east,north,South,Southeast"]}}.
-    input: "robot loc : (102,32) and  Lidar data : (1,1,1,1,1,1,1,1)", Output: {{"coordinates": ["102,32"], "Posible_Directions": ["east,northeast,north,Northwest,West,Southwest,South,Southeast"]}}.
-    Using the above information provide only output of the model in json file format
-     \n\n### Response:\n'''
-    )
+    # prompt = PromptTemplate(
+    # input_variables=["query"],
+    # template='''\n\n###Given the instruction "{instruction}", extract the following information from the input query and provide it in JSON format.
+    # Lidar data represents eight directions respectively north,northeast,east,southeast,south,southwest,west,northwest. A value of 1 indicates that there is an obstacle in that direction, while a value of 0 indicates no obstacle, allowing the robot to move in that direction.
+    # output format:
+    # {{
+    # "coordinates": ["<robot location>"],
+    # "possible_directions": ["<directions where the robot can move. Only include directions corresponding to '0' values in the Lidar data>>"]
+    # }}
     
+    # So example input query and model output are below. Please refer to these examples and provide only model output in the following format.
+    # input: "robot loc : (3,4) and  Lidar data : (1,0,0,0,0,1,1,0)", Output: {{"coordinates": ["3,4"], "Posible_Directions": ["northeast","east","southeast",south"]}}.
+    # input: "robot loc : (10,5) and  Lidar data : (1,0,1,0,0,0,1,1)", Output: {{"coordinates": ["10,5"], "Posible_Directions": ["northeast","southeast","south","southwest"]}}.
+    # input: "robot loc : (102,32) and  Lidar data : (1,1,1,1,1,1,1,1)", Output: {{"coordinates": ["102,32"], "Posible_Directions": ["None"]}}.
+    # Using the above information provide only output of the model in json file format
+    #  \n\n### Response:\n'''
+    # )
+    
+    prompt = PromptTemplate(
+    input_variables=["query","instruction"],
+    template='''\n\n### Instruction:"{instruction}"  
+    ### Task:
+    Given the robot's location and Lidar data from the query, extract and format the information as JSON. The Lidar data indicates obstacles in eight directions respectively: north,northeast,east,southeast,south,southwest,west,northwest. A value of 1 means an obstacle is present, while 0 means the path is clear.
+    ### Output Format:
+    {{
+        "coordinates": ["<robot location>"],
+        "possible_directions": ["<list of directions with no obstacles. directions where the robot can move.only include directions corresponding to '0' values in the Lidar data>"]
+    }}
+    ### Example:
+    Input: "robot loc : (3,4) and Lidar data : (1,0,0,0,0,1,1,0)"
+    Output: {{"coordinates": ["3,4"], "possible_directions": ["northeast","east","southeast",south"]}}
 
+    Input: "robot loc : (10,5) and Lidar data : (1,0,1,0,0,0,1,1)"
+    Output: {{"coordinates": ["10,5"], "possible_directions": ["northeast","southeast","south","southwest"]}}
+
+    Input: "robot loc : (102,32) and Lidar data : (1,1,1,1,1,1,1,1)"
+    Output: {{"coordinates": ["102,32"], "possible_directions": ["north","northeast","east","southeast","south","southwest","west","northwest"]}}
+    Using the above information provide only output of the model in only json file format no need any other informations
+    \n\n### Response:\n
+    '''
+    )
     
     
     chain = LLMChain(llm=llm, prompt=prompt)
@@ -96,6 +116,6 @@ def infer(str_input):
 if __name__ == "__main__":
 
     #tst = 'Please go to the coffee room and see if the robot is there'
-    tst = 'robot loc : (35,15) and  Lidar data : (1,1,0,0,0,0,0,0)'
+    tst = 'robot loc : (10,5) and Lidar data : (0,0,0,0,0,0,1,1)'
     #(1,1,1,1,0,0,0,0)'
     infer(tst)

@@ -4,13 +4,13 @@
     <arg name="second_jetbot" default="jb_1"/>
  
  
-  <arg name="first_jb_x_pos" default="-6.5"/>
-  <arg name="first_jb_y_pos" default="-1.0"/>
+  <arg name="first_jb_x_pos" default="0.9"/>
+  <arg name="first_jb_y_pos" default="1.7"/>
   <arg name="first_jb_z_pos" default=" 0.0"/>
   <arg name="first_jb_yaw"   default=" 0"/>
  
-  <arg name="second_jb_x_pos" default=" -3.5"/>
-  <arg name="second_jb_y_pos" default="4.0"/>
+  <arg name="second_jb_x_pos" default="0.9"/>
+  <arg name="second_jb_y_pos" default="3.3"/>
   <arg name="second_jb_z_pos" default=" 0.0"/>
   <arg name="second_jb_yaw"   default=" 0"/>
 
