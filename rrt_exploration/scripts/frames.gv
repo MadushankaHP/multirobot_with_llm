@@ -1,0 +1,37 @@
+digraph G {
+"tb3_1/base_link" -> "tb3_1/wheel_left_link"[label="Broadcaster: /tb3_1/robot_state_publisher\nAverage rate: 30.323 Hz\nMost recent transform: 40.585 ( 0.023 sec old)\nBuffer length: 3.100 sec\n"];
+"tb3_1/base_footprint" -> "tb3_1/base_link"[label="Broadcaster: /tb3_1/robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.608 sec old)\nBuffer length: 0.000 sec\n"];
+"tb3_1/base_link" -> "tb3_1/wheel_right_link"[label="Broadcaster: /tb3_1/robot_state_publisher\nAverage rate: 30.323 Hz\nMost recent transform: 40.585 ( 0.023 sec old)\nBuffer length: 3.100 sec\n"];
+"map" -> "tb3_1/map"[label="Broadcaster: /world_to_tb3_1_tf_broadcaster\nAverage rate: 49.839 Hz\nMost recent transform: 40.616 ( -0.008 sec old)\nBuffer length: 3.110 sec\n"];
+"world" -> "map"[label="Broadcaster: /world_to_mergedmap_tf_broadcaster\nAverage rate: 49.838 Hz\nMost recent transform: 40.616 ( -0.008 sec old)\nBuffer length: 3.090 sec\n"];
+"tb3_2/base_link" -> "tb3_2/wheel_left_link"[label="Broadcaster: /tb3_2/robot_state_publisher\nAverage rate: 30.323 Hz\nMost recent transform: 40.587 ( 0.021 sec old)\nBuffer length: 3.100 sec\n"];
+"tb3_2/base_footprint" -> "tb3_2/base_link"[label="Broadcaster: /tb3_2/robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.608 sec old)\nBuffer length: 0.000 sec\n"];
+"tb3_2/base_link" -> "tb3_2/wheel_right_link"[label="Broadcaster: /tb3_2/robot_state_publisher\nAverage rate: 30.323 Hz\nMost recent transform: 40.587 ( 0.021 sec old)\nBuffer length: 3.100 sec\n"];
+"tb3_1/odom" -> "tb3_1/base_footprint"[label="Broadcaster: /gazebo\nAverage rate: 30.323 Hz\nMost recent transform: 40.585 ( 0.023 sec old)\nBuffer length: 3.067 sec\n"];
+"tb3_1/base_link" -> "tb3_1/caster_back_left_link"[label="Broadcaster: /tb3_1/robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.608 sec old)\nBuffer length: 0.000 sec\n"];
+"tb3_1/base_link" -> "tb3_1/caster_back_right_link"[label="Broadcaster: /tb3_1/robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.608 sec old)\nBuffer length: 0.000 sec\n"];
+"tb3_1/base_link" -> "tb3_1/imu_link"[label="Broadcaster: /tb3_1/robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.608 sec old)\nBuffer length: 0.000 sec\n"];
+"tb3_1/base_link" -> "tb3_1/base_scan"[label="Broadcaster: /tb3_1/robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.608 sec old)\nBuffer length: 0.000 sec\n"];
+"tb3_2/odom" -> "tb3_2/base_footprint"[label="Broadcaster: /gazebo\nAverage rate: 30.313 Hz\nMost recent transform: 40.587 ( 0.021 sec old)\nBuffer length: 3.068 sec\n"];
+"tb3_2/base_link" -> "tb3_2/caster_back_left_link"[label="Broadcaster: /tb3_2/robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.608 sec old)\nBuffer length: 0.000 sec\n"];
+"tb3_2/base_link" -> "tb3_2/caster_back_right_link"[label="Broadcaster: /tb3_2/robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.608 sec old)\nBuffer length: 0.000 sec\n"];
+"tb3_2/base_link" -> "tb3_2/imu_link"[label="Broadcaster: /tb3_2/robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.608 sec old)\nBuffer length: 0.000 sec\n"];
+"tb3_2/base_link" -> "tb3_2/base_scan"[label="Broadcaster: /tb3_2/robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.608 sec old)\nBuffer length: 0.000 sec\n"];
+"map" -> "tb3_2/map"[label="Broadcaster: /world_to_tb3_2_tf_broadcaster\nAverage rate: 49.693 Hz\nMost recent transform: 40.625 ( -0.017 sec old)\nBuffer length: 3.099 sec\n"];
+"map" -> "tb3_0/map"[label="Broadcaster: /world_to_tb3_0_tf_broadcaster\nAverage rate: 49.854 Hz\nMost recent transform: 40.623 ( -0.015 sec old)\nBuffer length: 3.089 sec\n"];
+"tb3_0/base_footprint" -> "tb3_0/base_link"[label="Broadcaster: /tb3_0/robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.608 sec old)\nBuffer length: 0.000 sec\n"];
+"tb3_0/odom" -> "tb3_0/base_footprint"[label="Broadcaster: /gazebo\nAverage rate: 30.323 Hz\nMost recent transform: 40.585 ( 0.023 sec old)\nBuffer length: 3.067 sec\n"];
+"tb3_0/base_link" -> "tb3_0/caster_back_left_link"[label="Broadcaster: /tb3_0/robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.608 sec old)\nBuffer length: 0.000 sec\n"];
+"tb3_0/base_link" -> "tb3_0/caster_back_right_link"[label="Broadcaster: /tb3_0/robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.608 sec old)\nBuffer length: 0.000 sec\n"];
+"tb3_0/base_link" -> "tb3_0/imu_link"[label="Broadcaster: /tb3_0/robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.608 sec old)\nBuffer length: 0.000 sec\n"];
+"tb3_0/base_link" -> "tb3_0/base_scan"[label="Broadcaster: /tb3_0/robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.608 sec old)\nBuffer length: 0.000 sec\n"];
+"tb3_0/map" -> "tb3_0/odom"[label="Broadcaster: /tb3_0/turtlebot3_slam_gmapping\nAverage rate: 20.321 Hz\nMost recent transform: 40.622 ( -0.014 sec old)\nBuffer length: 3.051 sec\n"];
+"tb3_1/map" -> "tb3_1/odom"[label="Broadcaster: /tb3_1/turtlebot3_slam_gmapping\nAverage rate: 20.321 Hz\nMost recent transform: 40.622 ( -0.014 sec old)\nBuffer length: 3.051 sec\n"];
+"tb3_2/map" -> "tb3_2/odom"[label="Broadcaster: /tb3_2/turtlebot3_slam_gmapping\nAverage rate: 20.315 Hz\nMost recent transform: 40.623 ( -0.015 sec old)\nBuffer length: 3.052 sec\n"];
+"tb3_0/base_link" -> "tb3_0/wheel_left_link"[label="Broadcaster: /tb3_0/robot_state_publisher\nAverage rate: 30.323 Hz\nMost recent transform: 40.585 ( 0.023 sec old)\nBuffer length: 3.067 sec\n"];
+"tb3_0/base_link" -> "tb3_0/wheel_right_link"[label="Broadcaster: /tb3_0/robot_state_publisher\nAverage rate: 30.323 Hz\nMost recent transform: 40.585 ( 0.023 sec old)\nBuffer length: 3.067 sec\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 40.608"[ shape=plaintext ] ;
+ }->"world";
+}

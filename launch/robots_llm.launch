@@ -1,7 +1,0 @@
-<launch>
-
- <node pkg="multirobot_with_llm" type="read_scan.py" name="R1_scan_data" output="screen" />  
- <node pkg="multirobot_with_llm" type="read_scan2.py" name="R2_scan_data" output="screen" /> 
-
-
-</launch>

@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<launch>
+    
+  <arg name="model" default="burger" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="move_forward_only" default="false"/>
+  <arg name="configuration_basename" default="turtlebot3_lds_2d.lua"/>
+
+
+  
+  <arg name='first_jb_0' default="jb_0"/>
+  <arg name="first_jb_0_x_pos" default="1.0"/>
+  <arg name="first_jb_0_y_pos" default=" 2.0"/>
+  <arg name="first_jb_0_z_pos" default=" 0.0"/>
+  <arg name="first_jb_0_yaw"   default=" 0.0"/>
+
+  <arg name='second_jb_1' default="jb_1"/>
+  <arg name="second_jb_1_x_pos" default="1.0"/>
+  <arg name="second_jb_1_y_pos" default=" 4.0"/>
+  <arg name="second_jb_1_z_pos" default=" 0.0"/>
+  <arg name="second_jb_1_yaw"   default=" 0.0"/>
+
+ 
+      
+<!-- ################################################################################################# -->
+  <group ns = "$(arg first_jb_0)">
+        <!-- <param name="robot_description" command="$(find xacro)/xacro $(find jetbot_world)/urdf/jetbot_csi.urdf.xacro botname:=$(arg first_jb_0)" />
+
+        <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+          <param name="publish_frequency" type="double" value="50.0" />
+          <param name="tf_prefix" value="$(arg first_jb_0)" />
+        </node> -->
+
+    <!-- gmapping for turtlebot 1 -->
+      <node pkg="gmapping" type="slam_gmapping" name="turtlebot3_slam_gmapping" output="screen">
+          <param name="base_frame" value="$(arg first_jb_0)/base_footprint"/>
+          <param name="odom_frame" value="$(arg first_jb_0)/odom"/>
+          <param name="map_frame"  value="$(arg first_jb_0)/map"/>
+          <rosparam command="load" file="$(find multirobot_with_llm)/configuration/gmapping_params.yaml" />
+      </node>
+  </group>
+
+  <group ns = "$(arg second_jb_1)">
+      <!-- <param name="robot_description" command="$(find xacro)/xacro $(find jetbot_world)/urdf/jetbot_csi.urdf.xacro botname:=$(arg first_jb_0)" />
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+        <param name="publish_frequency" type="double" value="50.0" />
+        <param name="tf_prefix" value="$(arg first_jb_0)" />
+    </node> -->
+
+    <node pkg="gmapping" type="slam_gmapping" name="turtlebot3_slam_gmapping" output="screen">
+        <param name="base_frame" value="$(arg first_jb_0)/base_footprint"/>
+        <param name="odom_frame" value="$(arg first_jb_0)/odom"/>
+        <param name="map_frame"  value="$(arg first_jb_0)/map"/>
+        <rosparam command="load" file="$(find multirobot_with_llm)/configuration/gmapping_params.yaml" />
+    </node>
+    
+  </group>
+
+ <include file="$(find multibot_vo)/launch/move_base.launch">
+        <arg name="botname" value="$(arg first_jb_0)" />
+    </include>
+
+  <include file="$(find multibot_vo)/launch/move_base.launch">
+        <arg name="botname" value="$(arg second_jb_1)" />
+  </include>
+
+  <include file="$(find multirobot_with_llm)/launch/includes/multi_jb_mapmerge.launch">
+    <arg name="model" value="$(arg model)" />
+    <arg name="move_forward_only" value="$(arg move_forward_only)"/>
+    <arg name="first_jb_0" value="$(arg first_jb_0)"/>
+    <arg name="second_jb_1" value="$(arg second_jb_1)"/>
+    <arg name="first_jb_0_x_pos" default="$(arg first_jb_0_x_pos)"/>
+    <arg name="first_jb_0_y_pos" default="$(arg first_jb_0_y_pos)"/>
+    <arg name="first_jb_0_z_pos" default="$(arg first_jb_0_z_pos)"/>
+    <arg name="first_jb_0_yaw"   default="$(arg first_jb_0_yaw)"/>
+    <arg name="second_jb_1_x_pos" default="$(arg second_jb_1_x_pos)"/>
+    <arg name="second_jb_1_y_pos" default="$(arg second_jb_1_y_pos)"/>
+    <arg name="second_jb_1_z_pos" default="$(arg second_jb_1_z_pos)"/>
+    <arg name="second_jb_1_yaw"   default="$(arg second_jb_1_yaw)"/>
+    </include>
+
+
+  <!-- ################################################################################################# -->
+  <node pkg="tf" type="static_transform_publisher" name="world_to_mergedmap_tf_broadcaster"  args="0.385 0.385 0 0 0 0 world map 20"/>
+  <!-- <node pkg="tf" type="static_transform_publisher" name="world_to_$(arg first_jb_0)_tf_broadcaster"  args="0 0 0 0 0 0 /map /$(arg first_jb_0)/map 20"/>
+  <node pkg="tf" type="static_transform_publisher" name="world_to_$(arg second_jb_1)_tf_broadcaster" args="0 0 0 0 0 0 /map /$(arg second_jb_1)/map 20"/> -->
+
+  <node pkg="tf" type="static_transform_publisher" name="world_to_$(arg first_jb_0)_tf_broadcaster"  args="$(arg first_jb_0_x_pos) $(arg first_jb_0_y_pos) 0 0 0 0 /world /$(arg first_jb_0)/map 20"/>
+  <node pkg="tf" type="static_transform_publisher" name="world_to_$(arg second_jb_1)_tf_broadcaster" args="$(arg second_jb_1_x_pos) $(arg second_jb_1_y_pos) 0 0 0 0 /world /$(arg second_jb_1)/map 20"/>
+
+  <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find ros_multi_tb3)/rviz/multi_tb3_gmapping.rviz"/>
+    
+
+
+</launch>

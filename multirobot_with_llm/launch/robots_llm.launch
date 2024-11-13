@@ -1,0 +1,15 @@
+<launch>
+<!-- <include file="$(find rrt_exploration)/launch/rrt.launch"/> -->
+<!-- <include file="$(find multirobot_with_llm)/launch/turtlebot3_navigation_multi.launch"/> -->
+<!-- <node pkg="multirobot_with_llm" type="loop.py" name="loop_time_node" output="screen" />  -->
+<!-- <node pkg="multirobot_with_llm" type="server.py" name="server" output="screen" />  -->
+
+ <node pkg="multirobot_with_llm" type="read_scan.py" name="R1_scan_data" output="screen" />  
+ <node pkg="multirobot_with_llm" type="read_scan2.py" name="R2_scan_data" output="screen" /> 
+
+<node pkg="multirobot_with_llm" type="send_cmd_rb1.py" name="action_node_robot_1" output="screen" />  
+<node pkg="multirobot_with_llm" type="send_cmd_rb2.py" name="action_node_robot_2" output="screen" /> 
+<!-- <node pkg="multirobot_with_llm" type="acuation_1.py" name="save_data" output="screen" />  -->
+ <!-- <include file="$(find multirobot_with_llm)/launch/test_1.launch"/> -->
+<!-- <node pkg="multirobot_with_llm" type="scan_update.py" name="scan_update_time" output="screen" /> -->
+</launch>
